@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:multi_notes/login_page/loginForm.dart';
+import 'loginForm.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,7 +12,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LoginForm(),
+      body: Container(
+        margin: const EdgeInsets.only(top:60),
+        child: LoginForm(),
+      ),
     );
   }
 }

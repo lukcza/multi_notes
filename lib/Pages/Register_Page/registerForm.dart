@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:multi_notes/login_page/loginPage.dart';
-
 import '../../Widgets/button.dart';
+import '../Login_Page/loginPage.dart';
 
 class RegisterForm extends StatefulWidget {
   @override

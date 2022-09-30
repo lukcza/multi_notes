@@ -1,7 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_notes/Pages/Main_Page/mainPage.dart';
 import 'package:multi_notes/Pages/Register_Page/registerPage.dart';
 import '../../Widgets/button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
  class LoginForm extends StatefulWidget {
    const LoginForm({Key? key}) : super(key: key);
 
@@ -10,16 +12,20 @@ import '../../Widgets/button.dart';
  }
 
  class _LoginFormState extends State<LoginForm> {
-   final TextEditingController _emailController = TextEditingController();
-   final TextEditingController _passwordController = TextEditingController();
+   final TextEditingController emailController = TextEditingController();
+   final TextEditingController passwordController = TextEditingController();
+   void dispose(){
+     emailController.dispose();
+     passwordController.dispose();
+     super.dispose();
+   }
    @override
    Widget build(BuildContext context) {
      return Container(
        child:Column(
          children: [
            TextFormField(
-             autovalidateMode: AutovalidateMode.always,
-             controller: _emailController,
+             controller: emailController,
              decoration: const InputDecoration(
                  hintText: "email",
                  icon: Icon(Icons.email_outlined)
@@ -28,8 +34,7 @@ import '../../Widgets/button.dart';
            ),
            const SizedBox(height: 20),
            TextFormField(
-             autovalidateMode: AutovalidateMode.always,
-             controller: _passwordController,
+             controller: passwordController,
              decoration: const InputDecoration(
                hintText: "password",
                icon: Icon(Icons.lock),
@@ -42,14 +47,7 @@ import '../../Widgets/button.dart';
              width: 200,
              height: 50,
              onPressed: () {
-               Navigator.push(
-                 context,
-                 MaterialPageRoute(
-                     builder: (context) {
-                       return MainPage();
-                     }
-                 ),
-               );
+               signIn();
              },
              text: Text('Login'),
              icon: Icon(Icons.check),
@@ -75,4 +73,11 @@ import '../../Widgets/button.dart';
        )
      );
    }
+   Future signIn() async{
+     await FirebaseAuth.instance.signInWithEmailAndPassword(
+         email: emailController.text.trim(),
+         password: passwordController.text.trim()
+     );
+   }
  }
+

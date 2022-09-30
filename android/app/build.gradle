@@ -47,7 +47,7 @@ android {
         applicationId "com.example.multi_notes"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -61,11 +61,12 @@ android {
         }
     }
 }
-
 flutter {
     source '../..'
 }
-
 dependencies {
+    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation 'com.google.firebase:firebase-auth:21.0.8'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+apply plugin: 'com.google.gms.google-services'
