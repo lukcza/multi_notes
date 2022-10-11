@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:multi_notes/Pages/Add_Note_Page/addNotePage.dart';
 
+import '../Add_Note_Page/addNotePage.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -9,8 +9,10 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+
 class _HomePageState extends State<HomePage> {
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
@@ -28,9 +30,9 @@ class _HomePageState extends State<HomePage> {
                 title: Text("Add note"),
                 onTap: () => {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return const AddNotePage();
-                      }
-                    )
+                    return const AddNotePage();
+                  }
+                  )
                   )
                 },
               ),

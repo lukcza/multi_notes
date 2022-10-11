@@ -50,6 +50,18 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 );
               }).toList(),
             ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(60)
+              ),
+              margin: EdgeInsets.all(10),
+              alignment: Alignment.bottomRight,
+              child: MaterialButton(
+                  textTheme: ButtonTextTheme.normal,
+                  padding: EdgeInsets.all(10),
+                  onPressed: ()=>print("added note")
+              ),
+            )
           ],
         ),
       ),
