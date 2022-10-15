@@ -28,20 +28,11 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return linux;
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -51,7 +42,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBg2Z2L1AyxDmCwIezfyVeb0IbTlCZeYAk',
-    appId: '1:738658674211:android:4ae3ff473357e66d847396',
+    appId: '1:738658674211:android:6e097ed01f06d7a1847396',
     messagingSenderId: '738658674211',
     projectId: 'multi-notes-51ed3',
     storageBucket: 'multi-notes-51ed3.appspot.com',
@@ -59,11 +50,41 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDER9mwKwYMf9ItY4shjgCG1PyWDo7sSsM',
-    appId: '1:738658674211:ios:10d40893ad47fdcf847396',
+    appId: '1:738658674211:ios:2175b2c9541311bb847396',
     messagingSenderId: '738658674211',
     projectId: 'multi-notes-51ed3',
     storageBucket: 'multi-notes-51ed3.appspot.com',
     iosClientId: '738658674211-6s0ecfij2m52i9qa0q057uagi7f583el.apps.googleusercontent.com',
     iosBundleId: 'com.example.multiNotes',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyDER9mwKwYMf9ItY4shjgCG1PyWDo7sSsM',
+    appId: '1:738658674211:ios:2175b2c9541311bb847396',
+    messagingSenderId: '738658674211',
+    projectId: 'multi-notes-51ed3',
+    storageBucket: 'multi-notes-51ed3.appspot.com',
+    iosClientId: '738658674211-6s0ecfij2m52i9qa0q057uagi7f583el.apps.googleusercontent.com',
+    iosBundleId: 'com.example.multiNotes',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyAD6KlP2H1y0XgvDjLmdw3Zeaw59OIxnt8',
+    appId: '1:738658674211:web:b04931ac2c88a361847396',
+    messagingSenderId: '738658674211',
+    projectId: 'multi-notes-51ed3',
+    authDomain: 'multi-notes-51ed3.firebaseapp.com',
+    storageBucket: 'multi-notes-51ed3.appspot.com',
+    measurementId: 'G-Z3DZ34YSJC',
+  );
+
+  static const FirebaseOptions linux = FirebaseOptions(
+    apiKey: 'AIzaSyAD6KlP2H1y0XgvDjLmdw3Zeaw59OIxnt8',
+    appId: '1:738658674211:web:56b3205537d319ae847396',
+    messagingSenderId: '738658674211',
+    projectId: 'multi-notes-51ed3',
+    authDomain: 'multi-notes-51ed3.firebaseapp.com',
+    storageBucket: 'multi-notes-51ed3.appspot.com',
+    measurementId: 'G-P8TZRKEMBL',
   );
 }

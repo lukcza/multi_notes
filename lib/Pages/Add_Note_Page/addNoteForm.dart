@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const List<String> list = <String>['Blue', 'Two', 'Three', 'Four'];
+const List<String> list = <String>['Blue', 'Red', 'Black', 'White'];
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({Key? key}) : super(key: key);
@@ -17,14 +17,14 @@ class _AddNoteFormState extends State<AddNoteForm> {
       body: Container(
         margin: EdgeInsets.fromLTRB(10, 70, 10, 10),
         child: Column(
-          children:  [
-            TextField(
+          children: [
+            const TextField(
               decoration: InputDecoration(
                 hintText: "Title",
               ),
             ),
             const SizedBox(height: 20),
-            TextField(
+            const TextField(
               decoration: InputDecoration(
                 hintText: "Your note...",
               ),
@@ -33,11 +33,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
               value: dropdownValue,
               icon: const Icon(Icons.arrow_downward),
               elevation: 16,
-              style: const TextStyle(color: Colors.deepPurple),
-              underline: Container(
-                height: 2,
-                color: Colors.deepPurpleAccent,
-              ),
               onChanged: (String? value) {
                 setState(() {
                   dropdownValue = value!;
@@ -50,20 +45,12 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 );
               }).toList(),
             ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(60)
-              ),
-              margin: EdgeInsets.all(10),
-              alignment: Alignment.bottomRight,
-              child: MaterialButton(
-                  textTheme: ButtonTextTheme.normal,
-                  padding: EdgeInsets.all(10),
-                  onPressed: ()=>print("added note")
-              ),
-            )
           ],
         ),
+      ),
+      floatingActionButton:  FloatingActionButton(
+        onPressed: () {()=>print("added note"); },
+        child: Icon(Icons.add),
       ),
     );
   }
