@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multi_notes/Pages/Your_Note_Page/YourNotePageContent.dart';
 
 class YourNotePage extends StatelessWidget {
   const YourNotePage({Key? key}) : super(key: key);
@@ -6,18 +7,7 @@ class YourNotePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Container(
-        child: GridView.count(
-            crossAxisCount: 3,
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-          children: [
-
-          ],
-        ),
-      ),
+      body:YourNoteContent(),
     );
   }
 }
