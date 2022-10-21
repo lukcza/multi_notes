@@ -14,7 +14,7 @@ class YourNotePage extends StatelessWidget {
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
           children: [
-            Text("Notatki"),
+
           ],
         ),
       ),

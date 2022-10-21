@@ -1,3 +1,7 @@
+import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 const List<String> list = <String>['Blue', 'Red', 'Black', 'White'];
@@ -11,23 +15,32 @@ class AddNoteForm extends StatefulWidget {
 
 class _AddNoteFormState extends State<AddNoteForm> {
   @override
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController noteController = TextEditingController();
+  late final userID = FirebaseAuth.instance.currentUser?.uid.toString();
   String dropdownValue = list.first;
-  Widget build(BuildContext context) {
+  void dispose() {
+    this.titleController;
+    super.dispose();
+  }
+    Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         margin: EdgeInsets.fromLTRB(10, 70, 10, 10),
         child: Column(
           children: [
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              decoration: const InputDecoration(
                 hintText: "Title",
               ),
+              controller: titleController,
             ),
             const SizedBox(height: 20),
-            const TextField(
-              decoration: InputDecoration(
+             TextField(
+              decoration: const InputDecoration(
                 hintText: "Your note...",
               ),
+               controller: noteController,
             ),
             DropdownButton<String>(
               value: dropdownValue,
@@ -49,9 +62,20 @@ class _AddNoteFormState extends State<AddNoteForm> {
         ),
       ),
       floatingActionButton:  FloatingActionButton(
-        onPressed: () {()=>print("added note"); },
+        onPressed: () => addNote(noteTitle: titleController.text.toString(),noteContent: noteController.text.toString(),noteColor: dropdownValue, authorID: userID),
         child: Icon(Icons.add),
       ),
     );
+  }
+  Future addNote({required String noteTitle,required String noteContent, required String noteColor, required String? authorID })async{
+      final note = FirebaseFirestore.instance.collection('Note');
+      final json ={
+        'AuthorID': authorID,
+        'Color' : noteColor,
+        'Note': noteContent,
+        'Title': noteTitle,
+      };
+      await note.add(json);
+      //await note.set(json);
   }
 }
