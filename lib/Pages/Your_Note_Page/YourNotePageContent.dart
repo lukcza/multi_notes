@@ -9,15 +9,7 @@ class YourNoteContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnimationLimiter(
-        child: MasonryGridView.count(crossAxisCount: 2, itemBuilder: (context, i) {
-          return  AnimationConfiguration.staggeredGrid(position: 1, columnCount: 2, child: ScaleAnimation(
-            child: FadeInAnimation(
-              child:NoteBox(),
-            ),
-          ));
-        }),
-      ),
+      body: NoteBox()
     );
   }
 }
