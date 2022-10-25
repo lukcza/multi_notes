@@ -12,12 +12,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+   late final userName = FirebaseAuth.instance.currentUser?.email.toString();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       drawer: Drawer(
-          width: 170,
+          width: 150,
           child: ListView(
             children: [
               ListTile(
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
                     size: 30,
                   ),
                 ),
-                title: Text("UserName"),
+                title: Text("${userName}"),
                 onTap: () => showProfile(),
               ),
               ListTile(
@@ -46,59 +47,82 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           )),
-      body: Column(
-        children: [
-          Flexible(
-            flex: 2,
-            child: Container(
-              margin: EdgeInsets.all(30),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Colors.amber,
-              ),
-
+      body: SafeArea(
+        child: Column(
+          children: [
+            Flexible(
+              flex: 1,
               child: GestureDetector(
                 onTap: () =>{
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return const YourNotePage();
                   }))
                 },
-                child: Center(
-                  child: Text("YOUR NOTE"),
+                child: Container(
+                  margin: EdgeInsets.all(30),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.amber,
+                  ),
+                  child: Center(
+                    child: Text("YOUR NOTE",style: TextStyle(fontSize:30),),
+                  ),
                 ),
               ),
             ),
-          ),
-          Flexible(
-            flex: 3,
-            child: GestureDetector(
-              onTap: () => {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const AddNotePage();
-                }))
-              },
-              child: Center(
-                child: Text("ADD NOTE"),
+            Flexible(
+              flex: 1,
+              child: GestureDetector(
+                onTap: () => {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const AddNotePage();
+                  }))
+                },
+                child: Container(
+                  margin: EdgeInsets.all(30),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.black38,
+                  ),
+                  child: Center(
+                    child: Text("ADD NOTE",style: TextStyle(fontSize:30),),
+                  ),
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
+      ),
+      floatingActionButton:  FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return const AddNotePage();
+        }))
       ),
     );
   }
 
   Future showProfile() async {
     showDialog(
+      barrierLabel: "Porifle",
         context: context,
-        builder: (context) => Card(
-              color: Colors.amber,
-              child: Column(
-                children: const [
-                  CircleAvatar(
-                    child: Icon(Icons.person),
-                  ),
-                ],
-              ),
-            ));
+        builder: (context) => SafeArea(
+          child: Card(
+                color: Colors.black12,
+                child: Column(
+                  children:[
+                    ListTile(
+                      leading: CircleAvatar(
+                        child: Icon(Icons.person),
+                      ),
+                      title: Text(
+                          "Email: ${userName}",style: TextStyle(fontSize: 15),
+                      ),
+                    ),
+
+                  ],
+                ),
+          ),
+        ));
   }
 }
